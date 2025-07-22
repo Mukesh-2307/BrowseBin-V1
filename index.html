@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Bookmark Manager</title>
+  </head>
+  <body>
+    <div
+      class="app-wrapper flex flex-col items-center justify-center min-h-screen gap-6"
+    >
+      <h1 class="hero-h1">Bookmark Manager</h1>
+      <input
+        type="text"
+        id="bookmark-input"
+        placeholder="enter a bookmark URL"
+        onchange="handleOnChange(event)"
+      />
+      <div class="bookmark-output" id="bookmark-output">Your Output Here: </div>
+    </div>
+  </body>
+  <script src="./index.js"></script>
+</html>

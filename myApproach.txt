@@ -1,0 +1,48 @@
+#Bookmark Manager App (BrowseBin)
+
+objective: To build an app that help user to add, organize and access their web bookmarks efficiently.
+
+organizing = structuring and categorizing saved bookmarks.
+
+user functions:
+1. Add bookmarks (create)
+2. Browse bookmarks (read)
+3. Edit bookmarks (update)
+4. Remove bookmarks (delete)
+
+additional functions:
+1. Search a bookmark
+2. Removing duplicates
+3. Cleaning up old or broken links
+4. Favorite bookmarks
+5. Open link in a new tab
+
+user inputs:
+1. Link of the site that he/she want to add
+2. Name (to make the bookmark easy to remember)
+3. Category (to add a filter capablity).
+    a. There will be few fixed categories so that it is easier to maintain (for me).
+
+How will I:
+1. add bookmark:
+    take input from user
+    create an object containing all the info
+    add to a master array
+    save to local storage
+
+2. browse bookmarks:
+    . bookmarks will be visible in the form of card
+    . the main page will display all overview card.
+    . overview card will contain name and go to link btn.
+    . on clicking the overview card, the main card will be visible
+    . main card will contain name, url (now full url will be visible), edit and delete btn.
+
+    . 
+
+
+Tech Stack:
+1. HTML
+2. CSS
+3. Js
+4. Tailwindcss
+5. Font Awsome icons

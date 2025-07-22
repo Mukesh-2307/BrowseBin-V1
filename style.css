@@ -1,0 +1,26 @@
+:root {
+  --bg-dark: #1e2939;
+  --bg-light: #fef6ff;
+  --bg-light-blue: #d6e6f2;
+
+  --bg-hover: #d6e6f2;
+
+  --border-dark: #37474f;
+
+  --text-dark: #1e2939;
+  --text-light: #fef6ff;
+  --text-grey: rgb(132, 132, 132);
+}
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+.hero-h1 {
+  font-size: 3rem;
+}
+
+input {
+  outline: none;
+  padding: 4px 8px;
+  border-bottom: solid 1px var(--border-dark);
+}
