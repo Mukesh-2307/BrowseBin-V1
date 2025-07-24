@@ -37,8 +37,8 @@ How will I:
     . on clicking the overview card, the main card will be visible
     . main card will contain name, url (now full url will be visible), edit and delete btn.
 
-    . 
-
+    . filter by A-Z / createdOn / old-new / new-old / 
+    
 
 Tech Stack:
 1. HTML
