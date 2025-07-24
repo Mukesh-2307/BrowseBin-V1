@@ -5,20 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script
+      src="https://kit.fontawesome.com/abca7331ef.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Bookmark Manager</title>
   </head>
   <body>
     <div
-      class="app-wrapper flex flex-col items-center justify-center min-h-screen gap-6"
+      class="input-form-wrapper absolute top-0 left-0 w-full h-full flex justify-center items-center hidden"
+      id="input-form-wrapper"
     >
-      <h1 class="hero-h1">Bookmark Manager</h1>
-      <input
-        type="text"
-        id="bookmark-input"
-        placeholder="enter a bookmark URL"
-        onchange="handleOnChange(event)"
-      />
-      <div class="bookmark-output" id="bookmark-output">Your Output Here: </div>
+      <button
+        class="close-btn-container absolute right-20 top-10"
+        id="close-btn"
+      >
+        <i class="fa-solid fa-x" style="color: #fff"></i>
+      </button>
+      <div class="input-form-card flex flex-col items-start gap-2 border-trbl">
+        <div class="flex gap-4 items-end">
+          <label for="bookmark-title">Title:</label>
+          <input type="text" name="bookmark-title" id="bookmark-title" placeholder="Enter bookmark title"/>
+        </div>
+        <div class="flex gap-4 items-end">
+          <label for="bookmark-url">URL:</label>
+          <input type="text" name="bookmark-url" id="bookmark-url" placeholder="Enter bookmark URL"/>
+        </div>
+        <div class="flex gap-4 items-end">
+          <label for="bookmark-category">Category: </label>
+          <select
+            name="bookmark-category"
+            id="bookmark-category"
+            class="border-trbl"
+          >
+            <option value="null">select Category</option>
+            <option value="daily">Daily</option>
+            <option value="learning">Learning</option>
+            <option value="music">Music</option>
+            <option value="gaming">Gaming</option>
+          </select>
+        </div>
+        <button class="btn w-full" id="save-btn">Save</button>
+      </div>
+    </div>
+    <div
+      class="navbar h-20 py-4 px-8 flex items-center justify-between border-b"
+    >
+      <h1 class="hero-h1">BrowseBin</h1>
+    </div>
+    <div class="app-wrapper flex flex-col min-h-screen gap-6 my-padding-x">
+      <div
+        class="title-section flex justify-between items-center my-padding-y border-b"
+      >
+        <h1>Your Bookmarks</h1>
+        <button class="btn" id="add-btn">Add bookmark</button>
+      </div>
+      <div class="bookmark-display-section">
+        <h1 class="my-margin-y">Category</h1>
+        <div class="bookmark-card-container">
+          <div class="bookmark-card border-trbl">
+            <h2 class="bookmark-card-title">bookmark title</h2>
+            <p class="bookmark-card-url">bookmark url</p>
+            <div class="bookmark-card-btn-container flex justify-between gap-2">
+              <button class="btn gap-2">
+                go to link
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </button>
+              <button class="btn"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   <script src="./index.js"></script>
