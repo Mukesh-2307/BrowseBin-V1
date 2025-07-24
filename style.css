@@ -10,10 +10,16 @@
   --text-dark: #1e2939;
   --text-light: #fef6ff;
   --text-grey: rgb(132, 132, 132);
+
+  --global-padding-x: 0 4rem;
+  --global-padding-y: 2rem 0;
+
+  --global-margin-x: 0 4rem;
+  --global-margin-y: 2rem 0;
 }
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-light);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
 }
 .hero-h1 {
   font-size: 3rem;
@@ -23,4 +29,81 @@ input {
   outline: none;
   padding: 4px 8px;
   border-bottom: solid 1px var(--border-dark);
+}
+
+.my-padding-x {
+  padding: var(--global-padding-x);
+}
+
+.my-padding-y {
+  padding: var(--global-padding-y);
+}
+
+.my-margin-x {
+  margin: var(--global-margin-x);
+}
+
+.my-margin-y {
+  margin: var(--global-margin-y);
+}
+
+.border-t {
+  border-top: solid 1px var(--border-dark);
+}
+
+.border-r {
+  border-right: solid 1px var(--border-dark);
+}
+
+.border-b {
+  border-bottom: solid 1px var(--border-dark);
+}
+
+.border-l {
+  border-left: solid 1px var(--border-dark);
+}
+
+.border-trbl {
+  border: solid 1px var(--border-dark);
+}
+
+.app-wrapper {
+  background-color: var(--bg-light-blue);
+}
+
+label{
+  width: 110px;
+}
+
+.input-form-wrapper{
+  background-color: #111111da;
+}
+
+.input-form-card{
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  background-color: var(--bg-light);
+}
+
+.bookmark-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 0.75rem 1.25rem;
+
+  height: 150px;
+  width: 300px;
+  border-radius: 8px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: auto;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
 }
