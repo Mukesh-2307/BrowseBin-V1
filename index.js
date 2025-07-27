@@ -114,9 +114,9 @@ const handleRender = () => {
   console.log(cardData)
     let html = '';
   cardData.forEach((category) => {
-    if (category.subBookmarks.length > 0) {
-      html += `<h1 class="my-margin-y">${category.categoryName}</h1>`;
-      html += `<div class="bookmark-card-container border-b pb-10 flex gap-4">`;
+    category.subBookmarks.length > 0 && (
+      html += `<h1 class="my-margin-y">${category.categoryName}</h1>`,
+      html += `<div class="bookmark-card-container border-b pb-10 flex gap-4">`,
       category.subBookmarks.forEach((bookmark, index) => {
         html += `
           <div class="bookmark-card border-trbl">
@@ -141,9 +141,9 @@ const handleRender = () => {
             </div>
           </div>
         `;
-      });
-      html += `</div>`;
-    }
+      }),
+      html += `</div>`
+    );
   });
 
 bookmarkCardContainerElement.innerHTML = html;
