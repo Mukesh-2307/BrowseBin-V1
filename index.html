@@ -25,11 +25,21 @@
       <div class="input-form-card flex flex-col items-start gap-2 border-trbl">
         <div class="flex gap-4 items-end">
           <label for="bookmark-title">Title:</label>
-          <input type="text" name="bookmark-title" id="bookmark-title" placeholder="Enter bookmark title"/>
+          <input
+            type="text"
+            name="bookmark-title"
+            id="bookmark-title"
+            placeholder="Enter bookmark title"
+          />
         </div>
         <div class="flex gap-4 items-end">
           <label for="bookmark-url">URL:</label>
-          <input type="text" name="bookmark-url" id="bookmark-url" placeholder="Enter bookmark URL"/>
+          <input
+            type="text"
+            name="bookmark-url"
+            id="bookmark-url"
+            placeholder="Enter bookmark URL"
+          />
         </div>
         <div class="flex gap-4 items-end">
           <label for="bookmark-category">Category: </label>
@@ -60,22 +70,7 @@
         <h1>Your Bookmarks</h1>
         <button class="btn" id="add-btn">Add bookmark</button>
       </div>
-      <div class="bookmark-display-section">
-        <h1 class="my-margin-y">Category</h1>
-        <div class="bookmark-card-container">
-          <div class="bookmark-card border-trbl">
-            <h2 class="bookmark-card-title">bookmark title</h2>
-            <p class="bookmark-card-url">bookmark url</p>
-            <div class="bookmark-card-btn-container flex justify-between gap-2">
-              <button class="btn gap-2">
-                go to link
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </button>
-              <button class="btn"><i class="fa-solid fa-trash-can"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="bookmark-display-section" id="bookmark-display-section"></div>
     </div>
   </body>
   <script src="./index.js"></script>
