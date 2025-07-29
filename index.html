@@ -12,31 +12,40 @@
     <title>Bookmark Manager</title>
   </head>
   <body>
-    <div class="update-forum hidden">
-      <div class="edit-card">
-        <div>
-          <label for="bookmark-title">Updated Title:</label>
-          <input
-            type="text"
-            placeholder="Enter bookmark title"
-            id="update-title-input"
-          />
-        </div>
-        <div>
-          <label for="bookmark-url">Updated URL:</label>
-          <input type="text" placeholder="Enter bookmark URL" id="update-url-input" />
-        </div>
-        <button class="btn" id="add-btn" onclick="updateBookmark()">
-          Update Bookmark
-        </button>
-      </div>
-    </div>
     <div
       class="navbar h-20 py-4 px-8 flex items-center justify-between border-b"
     >
       <h1 class="hero-h1">BrowseBin</h1>
     </div>
-    <div class="app-wrapper flex flex-col min-h-screen gap-6 my-padding-x">
+    <div
+      class="app-wrapper relative flex flex-col min-h-screen gap-6 my-padding-x"
+    >
+      <div class="update-forum hide-update-forum">
+        <div class="edit-card relative">
+          <button class="absolute top-5 right-5 cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div>
+            <label for="bookmark-title">Updated Title:</label>
+            <input
+              type="text"
+              placeholder="Enter bookmark title"
+              id="update-title-input"
+            />
+          </div>
+          <div>
+            <label for="bookmark-url">Updated URL:</label>
+            <input
+              type="text"
+              placeholder="Enter bookmark URL"
+              id="update-url-input"
+            />
+          </div>
+          <button class="btn" id="add-btn" onclick="updateBookmark()">
+            Update Bookmark
+          </button>
+        </div>
+      </div>
       <div
         class="title-section flex justify-between items-center my-padding-y border-b"
       >
