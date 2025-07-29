@@ -12,50 +12,23 @@
     <title>Bookmark Manager</title>
   </head>
   <body>
-    <div
-      class="input-form-wrapper absolute top-0 left-0 w-full h-full flex justify-center items-center hidden"
-      id="input-form-wrapper"
-    >
-      <button
-        class="close-btn-container absolute right-20 top-10"
-        id="close-btn"
-      >
-        <i class="fa-solid fa-x" style="color: #fff"></i>
-      </button>
-      <div class="input-form-card flex flex-col items-start gap-2 border-trbl">
-        <div class="flex gap-4 items-end">
-          <label for="bookmark-title">Title:</label>
+    <div class="update-forum hidden">
+      <div class="edit-card">
+        <div>
+          <label for="bookmark-title">Updated Title:</label>
           <input
             type="text"
-            name="bookmark-title"
-            id="bookmark-title"
             placeholder="Enter bookmark title"
+            id="update-title-input"
           />
         </div>
-        <div class="flex gap-4 items-end">
-          <label for="bookmark-url">URL:</label>
-          <input
-            type="text"
-            name="bookmark-url"
-            id="bookmark-url"
-            placeholder="Enter bookmark URL"
-          />
+        <div>
+          <label for="bookmark-url">Updated URL:</label>
+          <input type="text" placeholder="Enter bookmark URL" id="update-url-input" />
         </div>
-        <div class="flex gap-4 items-end">
-          <label for="bookmark-category">Category: </label>
-          <select
-            name="bookmark-category"
-            id="bookmark-category"
-            class="border-trbl"
-          >
-            <option value="null">select Category</option>
-            <option value="daily">Daily</option>
-            <option value="learning">Learning</option>
-            <option value="music">Music</option>
-            <option value="gaming">Gaming</option>
-          </select>
-        </div>
-        <button class="btn w-full" id="save-btn">Save</button>
+        <button class="btn" id="add-btn" onclick="updateBookmark()">
+          Update Bookmark
+        </button>
       </div>
     </div>
     <div
@@ -67,10 +40,37 @@
       <div
         class="title-section flex justify-between items-center my-padding-y border-b"
       >
-        <h1>Your Bookmarks</h1>
-        <button class="btn" id="add-btn">Add bookmark</button>
+        <div class="flex flex-col gap-6">
+          <div>
+            <label for="bookmark-title">Bookmark Title:</label>
+            <input
+              type="text"
+              placeholder="Enter bookmark title"
+              id="title-input"
+            />
+          </div>
+          <div>
+            <label for="bookmark-url">bookmark URL:</label>
+            <input
+              type="text"
+              placeholder="Enter bookmark URL"
+              id="url-input"
+            />
+          </div>
+          <button class="btn" id="add-btn" onclick="addBookmark()">
+            Add bookmark
+          </button>
+        </div>
       </div>
-      <div class="bookmark-display-section" id="bookmark-display-section"></div>
+      <div
+        class="bookmark-display-section grid grid-cols-6"
+        id="bookmark-display-section"
+      >
+        <div class="div col-span-2">Title</div>
+        <div class="div col-span-2">URL</div>
+        <div class="div col-span-2">Action</div>
+        <div class="bookmark-data-container grid grid-cols-6 col-span-6"></div>
+      </div>
     </div>
   </body>
   <script src="./index.js"></script>

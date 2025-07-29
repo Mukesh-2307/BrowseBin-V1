@@ -1,152 +1,78 @@
-// master bookmark array that stores objects
-const masterBookmark = [
-  {
-    categoryName: "daily",
-    subBookmarks: [],
-  },
-  {
-    categoryName: "learning",
-    subBookmarks: [],
-  },
-  {
-    categoryName: "music",
-    subBookmarks: [],
-  },
-  {
-    categoryName: "gaming",
-    subBookmarks: [],
-  },
-];
+let allBookmarks = []
 
-// uploading the masterbookmark array only if it is not present in the local storage at all
-if (!localStorage.getItem("masterBookmark")) {
-  localStorage.setItem("masterBookmark", JSON.stringify(masterBookmark));
+if (localStorage.getItem('allBookmarks')) {
+  allBookmarks = JSON.parse(localStorage.getItem('allBookmarks'));
+} else {
+  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks));
 }
 
-// accessing the input elements
-const bookmarkTitleElement = document.getElementById("bookmark-title");
-const bookmarkURLElement = document.getElementById("bookmark-url");
-const bookmarkCategoryElement = document.getElementById("bookmark-category");
+function addBookmark() {
+  const bookmarkTitle = document.getElementById('title-input');
+  const bookmarkURL = document.getElementById('url-input');
 
+  const newBookmark = { title: bookmarkTitle.value, URL: bookmarkURL.value };
 
-let bookmarkTitle,
-  bookmarkURL,
-  bookmarkCategory;
+  allBookmarks.push(newBookmark);
+  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks))
 
-// handling input changes
-const handleTitleChange = (e) => {
-  e.preventDefault();
-  bookmarkTitle = e.target.value;
-};
-
-bookmarkTitleElement.addEventListener("change", handleTitleChange);
-
-const handleUrlChange = (e) => {
-  e.preventDefault();
-  bookmarkURL = e.target.value;
-};
-
-bookmarkURLElement.addEventListener("change", handleUrlChange);
-
-const handleCategoryChange = (e) => {
-  e.preventDefault();
-  bookmarkCategory = e.target.value;
-  console.log(bookmarkCategory);
-};
-
-bookmarkCategoryElement.addEventListener("change", handleCategoryChange);
-
-// accessing the button elements
-const addBtn = document.getElementById("add-btn");
-const closeBtn = document.getElementById("close-btn");
-const inputFormWrapper = document.getElementById("input-form-wrapper");
-
-// handling form open and close
-const setCardVisible = () => {
-  inputFormWrapper.classList.remove("hidden");
-};
-const setCardHidden = () => {
-  inputFormWrapper.classList.add("hidden");
-};
-
-addBtn.addEventListener("click", setCardVisible);
-closeBtn.addEventListener("click", setCardHidden);
-
-// saving input values to the array
-
-// accessing the save button
-const saveBtnElement = document.getElementById("save-btn");
-
-// handling the save button
-const handleSave = () => {
-  const masterBookmark = JSON.parse(localStorage.getItem("masterBookmark"));
-  console.log(masterBookmark);
-  const currentCategory = masterBookmark.find((category) => {
-    return category.categoryName === bookmarkCategory;
-  });
-  console.log(currentCategory);
-  console.log(bookmarkTitle, bookmarkURL);
-  const bookmarkData = {
-    bookmarkTitle,
-    bookmarkURL,
-  };
-  currentCategory.subBookmarks.push(bookmarkData);
-  localStorage.setItem("masterBookmark", JSON.stringify(masterBookmark));
-};
-
-saveBtnElement.addEventListener("click", handleSave);
-saveBtnElement.addEventListener("click", setCardHidden);
-
-// handling bookmark update
-const handelUpdate = (bookmarkTitle, bookmarkURL, bookmarkCategoryName, index) => {
-  console.log(bookmarkTitle, bookmarkURL, bookmarkCategoryName);
-  bookmarkTitleElement.value = bookmarkTitle;
-  bookmarkURLElement.value = bookmarkURL;
-  bookmarkCategoryElement.value = bookmarkCategoryName;
-  console.log(index);
+  bookmarkTitle.value = "";
+  bookmarkURL.value = "";
+  renderBookmark();
 }
 
-// rendering the bookmarks
-const bookmarkCardContainerElement = document.getElementById('bookmark-display-section');
+function deleteBookmark(index) {
+  allBookmarks.splice(index, 1);
+  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks))
+  renderBookmark();
+}
 
-const handleRender = () => {
-  const cardData = JSON.parse(localStorage.getItem('masterBookmark'));
-  console.log(cardData)
-    let html = '';
-  cardData.forEach((category) => {
-    category.subBookmarks.length > 0 && (
-      html += `<h1 class="my-margin-y">${category.categoryName}</h1>`,
-      html += `<div class="bookmark-card-container border-b pb-10 flex gap-4">`,
-      category.subBookmarks.forEach((bookmark, index) => {
-        html += `
-          <div class="bookmark-card border-trbl">
-            <div class="flex justify-between">
-              <h2 class="bookmark-card-title">${bookmark.bookmarkTitle}</h2>
-              <button onClick="
-                setCardVisible();
-                handelUpdate('${bookmark.bookmarkTitle}', '${bookmark.bookmarkURL}', '${category.categoryName}', ${index});
-              ">
-                <i class="fa-solid fa-pencil"></i>
-              </button>
-            </div>
-            <p class="bookmark-card-url">${bookmark.bookmarkURL}</p>
-            <div class="bookmark-card-btn-container flex justify-between gap-2">
-              <button class="btn gap-2">
-                <a href="${bookmark.bookmarkURL}" target="_blank">
-                  go to link
-                </a>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </button>
-              <button class="btn"><i class="fa-solid fa-trash-can"></i></button>
-            </div>
-          </div>
-        `;
-      }),
-      html += `</div>`
-    );
-  });
+function editBookmark(index) {
+  document.querySelector('.update-forum').classList.remove('hidden');
 
-bookmarkCardContainerElement.innerHTML = html;
-};
+  const updateTitle = document.getElementById('update-title-input');
+  const updateURL = document.getElementById('update-url-input');
 
-handleRender();
+  // Populate the input fields with current bookmark data
+  updateTitle.value = allBookmarks[index].title;
+  updateURL.value = allBookmarks[index].URL;
+
+  // Store the index for the update function
+  updateTitle.dataset.editIndex = index;
+}
+
+function updateBookmark() {
+  const updateTitle = document.getElementById('update-title-input');
+  const updateURL = document.getElementById('update-url-input');
+
+  // Get the index of the bookmark being edited
+  const editIndex = parseInt(updateTitle.dataset.editIndex);
+
+  // Update the bookmark with new values
+  allBookmarks[editIndex].title = updateTitle.value;
+  allBookmarks[editIndex].URL = updateURL.value;
+
+  // Clear the input fields
+  updateTitle.value = '';
+  updateURL.value = '';
+
+  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks));
+  renderBookmark();
+  document.querySelector('.update-forum').classList.add('hidden');
+}
+
+function renderBookmark() {
+  const bookmarkDataContainer = document.querySelector('.bookmark-data-container');
+
+  const remoteBookmark = JSON.parse(localStorage.getItem('allBookmarks'));
+
+  let html = '';
+  remoteBookmark.forEach((bookmark, index) => {
+    html += `<div class="grid grid-cols-6 col-span-6 my-4">`;
+    html += `<div class="div col-span-2">${bookmark.title}</div>`;
+    html += `<div class="div col-span-2">${bookmark.URL}</div>`;
+    html += `<div class="div col-span-2 flex gap-4"><button class="btn" onClick="editBookmark(${index})">edit</button><button class="btn" onClick="deleteBookmark(${index})">delete</button></div></div>`;
+  })
+  bookmarkDataContainer.innerHTML = html;
+}
+
+renderBookmark();
