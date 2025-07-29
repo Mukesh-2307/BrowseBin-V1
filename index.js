@@ -27,7 +27,9 @@ function deleteBookmark(index) {
 }
 
 function editBookmark(index) {
-  document.querySelector('.update-forum').classList.remove('hidden');
+
+  document.querySelector('.update-forum').classList.remove('hide-update-forum')
+  document.querySelector('.update-forum').classList.add('open-update-forum');
 
   const updateTitle = document.getElementById('update-title-input');
   const updateURL = document.getElementById('update-url-input');
@@ -56,8 +58,8 @@ function updateBookmark() {
   updateURL.value = '';
 
   localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks));
+  document.querySelector('.update-forum').classList.add('hide-update-forum');
   renderBookmark();
-  document.querySelector('.update-forum').classList.add('hidden');
 }
 
 function renderBookmark() {
