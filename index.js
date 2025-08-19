@@ -1,80 +1,22 @@
-let allBookmarks = []
+import { allBookmarks } from "./data/bookmark.js";
+import renderBookmark from "./controllers/renderBookmark.js";
+import addBookmark from "./controllers/addBookmark.js";
+import { editBookmark, updateBookmark } from "./controllers/updateBookmark.js";
+import deleteBookmark from "./controllers/deleteBookmark.js";
 
-if (localStorage.getItem('allBookmarks')) {
-  allBookmarks = JSON.parse(localStorage.getItem('allBookmarks'));
-} else {
-  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks));
+// Expose functions used by inline onclick handlers
+window.editBookmark = editBookmark;
+window.deleteBookmark = deleteBookmark;
+
+// Wire up the Add bookmark button
+const addButton = document.getElementById('add-btn');
+if (addButton) {
+  addButton.addEventListener('click', addBookmark);
 }
 
-function addBookmark() {
-  const bookmarkTitle = document.getElementById('title-input');
-  const bookmarkURL = document.getElementById('url-input');
-
-  const newBookmark = { title: bookmarkTitle.value, URL: bookmarkURL.value };
-
-  allBookmarks.push(newBookmark);
-  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks))
-
-  bookmarkTitle.value = "";
-  bookmarkURL.value = "";
-  renderBookmark();
-}
-
-function deleteBookmark(index) {
-  allBookmarks.splice(index, 1);
-  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks))
-  renderBookmark();
-}
-
-function editBookmark(index) {
-
-  document.querySelector('.update-forum').classList.remove('hide-update-forum')
-  document.querySelector('.update-forum').classList.add('open-update-forum');
-
-  const updateTitle = document.getElementById('update-title-input');
-  const updateURL = document.getElementById('update-url-input');
-
-  // Populate the input fields with current bookmark data
-  updateTitle.value = allBookmarks[index].title;
-  updateURL.value = allBookmarks[index].URL;
-
-  // Store the index for the update function
-  updateTitle.dataset.editIndex = index;
-}
-
-function updateBookmark() {
-  const updateTitle = document.getElementById('update-title-input');
-  const updateURL = document.getElementById('update-url-input');
-
-  // Get the index of the bookmark being edited
-  const editIndex = parseInt(updateTitle.dataset.editIndex);
-
-  // Update the bookmark with new values
-  allBookmarks[editIndex].title = updateTitle.value;
-  allBookmarks[editIndex].URL = updateURL.value;
-
-  // Clear the input fields
-  updateTitle.value = '';
-  updateURL.value = '';
-
-  localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks));
-  document.querySelector('.update-forum').classList.add('hide-update-forum');
-  renderBookmark();
-}
-
-function renderBookmark() {
-  const bookmarkDataContainer = document.querySelector('.bookmark-data-container');
-
-  const remoteBookmark = JSON.parse(localStorage.getItem('allBookmarks'));
-
-  let html = '';
-  remoteBookmark.forEach((bookmark, index) => {
-    html += `<div class="grid grid-cols-6 col-span-6 my-4">`;
-    html += `<div class="div col-span-2">${bookmark.title}</div>`;
-    html += `<div class="div col-span-2">${bookmark.URL}</div>`;
-    html += `<div class="div col-span-2 flex gap-4"><button class="btn" onClick="editBookmark(${index})">edit</button><button class="btn" onClick="deleteBookmark(${index})">delete</button></div></div>`;
-  })
-  bookmarkDataContainer.innerHTML = html;
+const updateButton = document.querySelector('#update-btn')
+if (updateButton) {
+  updateButton.addEventListener('click', updateBookmark);
 }
 
 renderBookmark();
