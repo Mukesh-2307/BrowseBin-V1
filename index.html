@@ -20,6 +20,7 @@
     <div
       class="app-wrapper relative flex flex-col min-h-screen gap-6 my-padding-x"
     >
+      <!-- update -->
       <div class="update-forum hide-update-forum">
         <div class="edit-card relative">
           <button class="absolute top-5 right-5 cursor-pointer">
@@ -41,11 +42,13 @@
               id="update-url-input"
             />
           </div>
-          <button class="btn" id="add-btn" onclick="updateBookmark()">
+          <button class="btn" id="update-btn" onclick="updateBookmark()">
             Update Bookmark
           </button>
         </div>
       </div>
+
+      <!-- add -->
       <div
         class="title-section flex justify-between items-center my-padding-y border-b"
       >
@@ -66,11 +69,11 @@
               id="url-input"
             />
           </div>
-          <button class="btn" id="add-btn" onclick="addBookmark()">
-            Add bookmark
-          </button>
+          <button class="btn" id="add-btn">Add bookmark</button>
         </div>
       </div>
+
+      <!-- view -->
       <div
         class="bookmark-display-section grid grid-cols-6"
         id="bookmark-display-section"
@@ -82,5 +85,5 @@
       </div>
     </div>
   </body>
-  <script src="./index.js"></script>
+  <script src="./index.js" type="module"></script>
 </html>
