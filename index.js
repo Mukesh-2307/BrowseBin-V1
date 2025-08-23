@@ -1,14 +1,9 @@
-import { allBookmarks } from "./data/bookmark.js";
 import renderBookmark from "./controllers/renderBookmark.js";
 import addBookmark from "./controllers/addBookmark.js";
 import { editBookmark, updateBookmark } from "./controllers/updateBookmark.js";
 import deleteBookmark from "./controllers/deleteBookmark.js";
 
-// Expose functions used by inline onclick handlers
-window.editBookmark = editBookmark;
-window.deleteBookmark = deleteBookmark;
-
-// Wire up the Add bookmark button
+// Wire up the bookmark buttons
 const addButton = document.getElementById('add-btn');
 if (addButton) {
   addButton.addEventListener('click', addBookmark);
@@ -20,3 +15,14 @@ if (updateButton) {
 }
 
 renderBookmark();
+
+const editButton = document.querySelector('#edit-btn')
+if (editButton) {
+  editButton.addEventListener('click', editBookmark);
+}
+
+const deleteButton = document.querySelector('#delete-btn')
+if (deleteButton) {
+  deleteButton.addEventListener('click', deleteBookmark);
+}
+
