@@ -1,15 +1,21 @@
 import { allBookmarks } from "../data/bookmark.js";
 import renderBookmark from "./renderBookmark.js";
 
-export function editBookmark(index) {
+export function editBookmark() {
 
     document.querySelector('.update-forum').classList.remove('hide-update-forum')
     document.querySelector('.update-forum').classList.add('open-update-forum');
+
+    document.querySelector('.update-forum-cross').addEventListener('click', () => {
+        document.querySelector('.update-forum').classList.remove('open-update-forum');
+        document.querySelector('.update-forum').classList.add('hide-update-forum')
+    });
 
     const updateTitle = document.getElementById('update-title-input');
     const updateURL = document.getElementById('update-url-input');
 
     // Populate the input fields with current bookmark data
+    const index = document.querySelector('#edit-btn').dataset.index;
     updateTitle.value = allBookmarks[index].title;
     updateURL.value = allBookmarks[index].URL;
 
