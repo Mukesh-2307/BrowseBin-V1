@@ -9,7 +9,7 @@ export default function renderBookmark() {
     (remoteBookmark || []).forEach((bookmark, index) => {
         html += `<div class="grid grid-cols-6 col-span-6 my-4">`;
         html += `<div class="div col-span-2">${bookmark.title}</div>`;
-        html += `<div class="div col-span-2">${bookmark.URL}</div>`;
+        html += `<div class="div col-span-2"><a href="${bookmark.URL}" target="_blank">${bookmark.URL}</a></div>`;
         html += `<div class="div col-span-2 flex gap-4"><button class="btn" id="edit-btn" data-index=${index}>edit</button><button class="btn" id="delete-btn">delete</button></div></div>`;
     })
     bookmarkDataContainer.innerHTML = html;
