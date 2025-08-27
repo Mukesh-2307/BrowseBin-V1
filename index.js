@@ -2,6 +2,8 @@ import renderBookmark from "./controllers/renderBookmark.js";
 import addBookmark from "./controllers/addBookmark.js";
 import { editBookmark, updateBookmark } from "./controllers/updateBookmark.js";
 import deleteBookmark from "./controllers/deleteBookmark.js";
+import { addGlobalEventListener } from "./utils/addGlobalEventListener.js";
+addGlobalEventListener
 
 // Wire up the bookmark buttons
 const addButton = document.getElementById('add-btn');
@@ -15,14 +17,6 @@ if (updateButton) {
 }
 
 renderBookmark();
-
-function addGlobalEventListener(type, selector, callback, parent = document){
-  parent.addEventListener(type,e =>{
-    if(e.target.matches(selector)){
-      callback(e);
-    }
-  })
-}
 
 const bookmarksContainerElement = document.querySelector('.bookmark-data-container');
 
