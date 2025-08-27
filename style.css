@@ -117,3 +117,13 @@ input {
   background-color: var(--bg-light);
   padding: 4rem;
 }
+
+.fav-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-star{
+  cursor: pointer;
+}
