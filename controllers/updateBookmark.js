@@ -1,5 +1,6 @@
 import { allBookmarks } from "../data/bookmark.js";
 import renderBookmark from "./renderBookmark.js";
+import { validation } from "../utils/validation.js";
 
 export function editBookmark() {
 
@@ -27,18 +28,23 @@ export function updateBookmark() {
     const updateTitle = document.getElementById('update-title-input');
     const updateURL = document.getElementById('update-url-input');
 
-    // Get the index of the bookmark being edited
-    const editIndex = parseInt(updateTitle.dataset.editIndex);
+    const val = validation(updateTitle.value, updateURL.value)
 
-    // Update the bookmark with new values
-    allBookmarks[editIndex].title = updateTitle.value;
-    allBookmarks[editIndex].URL = updateURL.value;
+    if (val) {
+        // Get the index of the bookmark being edited
+        const editIndex = parseInt(updateTitle.dataset.editIndex);
 
-    // Clear the input fields
-    updateTitle.value = '';
-    updateURL.value = '';
+        // Update the bookmark with new values
+        allBookmarks[editIndex].title = updateTitle.value;
+        allBookmarks[editIndex].URL = updateURL.value;
 
-    localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks));
-    document.querySelector('.update-forum').classList.add('hide-update-forum');
-    renderBookmark();
+        // Clear the input fields
+        updateTitle.value = '';
+        updateURL.value = '';
+
+        localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks));
+        document.querySelector('.update-forum').classList.add('hide-update-forum');
+        renderBookmark();
+    }
+
 }
