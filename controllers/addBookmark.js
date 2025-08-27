@@ -11,7 +11,7 @@ export default function addBookmark() {
     const val = validation(bookmarkTitle.value, bookmarkURL.value);
 
     if (val) {
-        const newBookmark = { title: bookmarkTitle.value, URL: bookmarkURL.value };
+        const newBookmark = { title: bookmarkTitle.value, URL: bookmarkURL.value, isFav: false };
 
         allBookmarks.push(newBookmark);
         localStorage.setItem('allBookmarks', JSON.stringify(allBookmarks))
