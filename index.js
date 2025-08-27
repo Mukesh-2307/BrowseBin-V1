@@ -16,13 +16,17 @@ if (updateButton) {
 
 renderBookmark();
 
-const editButton = document.querySelector('#edit-btn')
-if (editButton) {
-  editButton.addEventListener('click', editBookmark);
+function addGlobalEventListener(type, selector, callback, parent = document){
+  parent.addEventListener(type,e =>{
+    if(e.target.matches(selector)){
+      callback(e);
+    }
+  })
 }
 
-const deleteButton = document.querySelector('#delete-btn')
-if (deleteButton) {
-  deleteButton.addEventListener('click', deleteBookmark);
-}
+const bookmarksContainerElement = document.querySelector('.bookmark-data-container');
+
+addGlobalEventListener('click', '#edit-btn', editBookmark, bookmarksContainerElement)
+
+addGlobalEventListener('click', '#delete-btn', deleteBookmark, bookmarksContainerElement)
 
