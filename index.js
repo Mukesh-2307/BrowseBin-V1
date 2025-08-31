@@ -27,3 +27,8 @@ addGlobalEventListener('click', '#delete-btn', deleteBookmark, bookmarksContaine
 
 addGlobalEventListener('click', '.fav-btn', toggleFav, bookmarksContainerElement)
 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    addBookmark();
+  }
+})
